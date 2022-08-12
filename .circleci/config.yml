@@ -101,12 +101,12 @@ jobs:
       - checkout
       - restore_cache:
           keys: [frontend-scan]
-    - run:
-          name: Front-end scan
-          command: |
-             cd frontend
-             npm install
-             npm audit --audit-level=critical
+      - run:
+            name: Front-end scan
+            command: |
+              cd frontend
+              npm install
+              npm audit --audit-level=critical
   scan-backend:
     docker:
       - image: circleci/node:13.8.0
@@ -114,12 +114,12 @@ jobs:
       - checkout
       - restore_cache:
           keys: [backend-scan]
-    - run:
-          name: Back-end scan
-          command: |
-             cd backend
-             npm install
-             npm audit --audit-level=critical
+      - run:
+            name: Back-end scan
+            command: |
+              cd backend
+              npm install
+              npm audit --audit-level=critical
 
 #   deploy-infrastructure:
 #     docker:
