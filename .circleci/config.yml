@@ -106,8 +106,9 @@ jobs:
             command: |
               cd frontend
               npm install
-              npm audit fix --audit-level=critical --force
               npm audit --audit-level=critical
+              npm audit fix --audit-level=critical --force
+
   scan-backend:
     docker:
       - image: circleci/node:13.8.0
@@ -121,9 +122,8 @@ jobs:
               cd backend
               npm install
               npm install --save-dev webpack@5.74.0
-              npm audit fix --audit-level=critical --force
               npm audit --audit-level=critical
-
+              npm audit fix --audit-level=critical --force
 #   deploy-infrastructure:
 #     docker:
 #       # Docker image here that supports AWS CLI
