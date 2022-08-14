@@ -127,9 +127,12 @@ jobs:
             npm audit --audit-level=critical
       - slack/notify:
           event: fail
-          mentions: '@EngineeringTeam'
+          mentions: '@Olawale'
           template: basic_fail_1
-
+      - slack/notify:
+          event: pass
+          mentions: '@Olawale'
+          template: success_tagged_deploy_1
 #   deploy-infrastructure:
 #     docker:
 #       # Docker image here that supports AWS CLI
