@@ -118,13 +118,13 @@ jobs:
       - restore_cache:
           keys: [backend-scan]
       - run:
-            name: Back-end scan
-            command: |
-              cd backend
-              npm install
-              npm audit fix --force
-#              npm update mkdirp --depth 2 
-              npm audit --audit-level=critical
+          name: Back-end scan
+          command: |
+            cd backend
+            npm install
+            npm audit fix --force
+            # npm update mkdirp --depth 2 
+            npm audit --audit-level=critical
       - slack/notify:
           event: fail
           mentions: '@EngineeringTeam'
