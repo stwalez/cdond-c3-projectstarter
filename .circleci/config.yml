@@ -307,6 +307,7 @@ workflows:
           requires: [build-backend]
       - scan-backend:
           requires: [build-backend]
+          context: "Slack Context"
       - scan-frontend:
           requires: [build-frontend]
       # - deploy-infrastructure:
