@@ -196,7 +196,11 @@ jobs:
                         				{
                         					"type": "mrkdwn",
                         					"text": "Failed in build $CIRCLE_JOB of $CIRCLE_PROJECT_REPONAME ($CIRCLE_BRANCH)"
-                        				}
+                        				},
+                                {
+                                  "type": "mrkdwn",
+                                  "text": "$GIT_COMMIT_DESC"
+                                }
                         			]
                         		},
                         		{
