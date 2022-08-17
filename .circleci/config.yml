@@ -111,6 +111,8 @@ jobs:
               npm audit --audit-level=critical
 
   scan-backend:
+    environment:
+      GIT_COMMIT_DESC: git log --format=oneline -n 1 $CIRCLE_SHA1
     docker:
       - image: circleci/node:13.8.0
     steps:
@@ -135,8 +137,6 @@ jobs:
           template: success_tagged_deploy_1
       - slack/notify:
           event: always
-          environment:
-            GIT_COMMIT_DESC: git log --format=oneline -n 1 $CIRCLE_SHA1
           custom: |
                   {
                     "text": "CircleCI job failed.",
@@ -217,6 +217,7 @@ jobs:
                       }
                     ]
                   }
+          
 
             
 #   deploy-infrastructure:
