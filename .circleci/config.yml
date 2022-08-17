@@ -117,10 +117,9 @@ jobs:
       - checkout
       - restore_cache:
           keys: [backend-scan]
-       - run:
+      - run:
           name: "Setup custom environment variables"
           command: echo "export GIT_COMMIT_DESC=\"$(git log --format=oneline -n 1 $CIRCLE_SHA1)\"" >> ~/.bashrc
-            
       - run:
           name: Back-end scan
           command: |
