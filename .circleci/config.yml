@@ -112,7 +112,7 @@ jobs:
 
   scan-backend:
     environment:
-      GIT_COMMIT_DESC: echo "export COMMIT_MESSAGE=\"$(git log --format=oneline -n 1 $CIRCLE_SHA1)\"" >> ~/.bashrc
+      GIT_COMMIT_DESC: $(git log --format=oneline -n 1 $CIRCLE_SHA1)
     docker:
       - image: circleci/node:13.8.0
     steps:
