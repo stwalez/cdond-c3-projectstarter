@@ -123,11 +123,10 @@ jobs:
           name: Back-end scan
           command: |
             cd backend
-            echo $$GIT_COMMIT_DESC
+            echo $GIT_COMMIT_DESC
             npm install
             npm audit fix --force
             # npm update mkdirp --depth 2 
-            echo $$GIT_COMMIT_DESC
             npm audit --audit-level=critical
       # - slack/notify:
       #     event: fail
