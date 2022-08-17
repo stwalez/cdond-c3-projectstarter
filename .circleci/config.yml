@@ -187,15 +187,16 @@ jobs:
                         				{
                         					"type": "mrkdwn",
                         					"text": "*Mentions*: $SLACK_PARAM_MENTIONS"
-                        				},
-                                {
+                        				}
+                        			]
+                        		},
+                            {
+                        			"type": "section",
+                        			"fields": [
+                        				{
                         					"type": "mrkdwn",
                         					"text": "Failed in build $CIRCLE_JOB of $CIRCLE_PROJECT_REPONAME ($CIRCLE_BRANCH)"
-                                },
-                                {
-                        					"type": "mrkdwn",
-                        					"text": "$GIT_COMMIT_DESC"
-                                }
+                        				}
                         			]
                         		},
                         		{
