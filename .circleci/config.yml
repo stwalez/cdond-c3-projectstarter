@@ -188,7 +188,6 @@ jobs:
                         					"type": "mrkdwn",
                         					"text": "*Mentions*: $SLACK_PARAM_MENTIONS"
                         				},
-                                "fields": [
                                 {
                         					"type": "mrkdwn",
                         					"text": "Failed in build $CIRCLE_JOB of $CIRCLE_PROJECT_REPONAME ($CIRCLE_BRANCH)"
