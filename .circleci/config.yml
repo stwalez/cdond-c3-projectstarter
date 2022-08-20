@@ -160,6 +160,11 @@ jobs:
               --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" 
       - run:
+          name: install tar utility
+          command: |
+            yum install -y tar gzip
+            
+      - run:
           name: Add back-end ip to ansible inventory
           command: |
             cd .circleci/ansible
