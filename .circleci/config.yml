@@ -320,6 +320,9 @@ jobs:
   smoke-test:
     docker:
       - image: python:3.7-alpine3.11
+        shell: /bin/sh -leo pipefail
+        environment:
+          BASH_ENV: /etc/profile
     steps:
       # Checkout code from git
       - checkout
@@ -336,7 +339,7 @@ jobs:
                               --query 'Reservations[*].Instances[*].PublicIpAddress' \
                               --output text)
             echo "${BACKEND_IP}"
-            export 'API_URL="http://${BACKEND_IP}:3030"' >> $BASH_ENV
+            echo 'API_URL="http://${BACKEND_IP}:3030"' >> $BASH_ENV
             echo $API_URL            
       - run:
           name: Backend smoke test.
