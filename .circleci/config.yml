@@ -320,9 +320,6 @@ jobs:
   smoke-test:
     docker:
       - image: python:3.7-alpine3.11
-        shell: /bin/sh -leo pipefail
-        environment:
-          BASH_ENV: /etc/profile
     steps:
       # Checkout code from git
       - checkout
@@ -340,7 +337,9 @@ jobs:
                               --output text)
             echo "${BACKEND_IP}"
             echo 'API_URL="http://${BACKEND_IP}:3030"' >> $BASH_ENV
-            echo $API_URL            
+            echo $API_URL
+          environment:
+            BASH_ENV: /etc/profile            
       - run:
           name: Backend smoke test.
           command: |
