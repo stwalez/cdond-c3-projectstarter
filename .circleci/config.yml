@@ -341,7 +341,10 @@ jobs:
                               --query 'Reservations[*].Instances[*].PublicIpAddress' \
                               --output text)
             echo "${BACKEND_IP}"
+            export API_URL="http://${BACKEND_IP}:3030"
+            echo "${API_URL}"
             echo 'export API_URL="http://${BACKEND_IP}:3030"' >> $BASH_ENV
+            source $BASH_ENV
             echo $API_URL
             cat $BASH_ENV
             sh -c env
