@@ -320,9 +320,6 @@ jobs:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}    
       
   smoke-test:
-    shell: /bin/sh -leo pipefail
-    environment:
-      BASH_ENV: /etc/profile
     docker:
       - image: python:3.7-alpine3.11
     steps:
@@ -336,19 +333,12 @@ jobs:
       - run:
           name: Get backend url
           command: |
-            echo "export BACKEND_IP=$(aws ec2 describe-instances \
+            export BACKEND_IP=$(aws ec2 describe-instances \
                               --filters Name=tag:Name,Values='backend-${CIRCLE_WORKFLOW_ID:0:7}' \
                               --query 'Reservations[*].Instances[*].PublicIpAddress' \
-                              --output text)" >> $BASH_ENV
-            echo 'export API_URL=http://${BACKEND_IP}:3030' >> $BASH_ENV
-            source $BASH_ENV
+                              --output text)"
+            export API_URL=http://${BACKEND_IP}:3030'
             echo "${BACKEND_IP}"
-            echo "${API_URL}"
-            sh -c env
-      - run:
-          name: Backend smoke test.
-          command: |
-            sh -c env
             echo "${API_URL}"
             if curl "${API_URL}/api/status" | grep "ok"
             then
