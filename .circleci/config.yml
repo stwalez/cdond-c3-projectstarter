@@ -219,6 +219,13 @@ jobs:
       - restore_cache:
           keys: [backend-build]
       - run:
+          name: Install aws-cli
+          command: |
+            sudo apt-get update && sudo apt-get install -yy less
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            unzip awscliv2.zip
+            sudo ./aws/install
+      - run:
           name: Run migrations
           command: |
             cd backend
@@ -231,7 +238,6 @@ jobs:
       - run:
           name: Send migration results to memstash
           command: |
-            cat ~/project/backend/migrations_dump.txt
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
                 curl https://kvdb.io/S4DKsPdS4fLYBvHpUc2cx5/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
