@@ -15,7 +15,6 @@
     ls -la
 
 - name: "Run Application"
-  become: yes
   shell: |
     npm install
     pm2 stop default
