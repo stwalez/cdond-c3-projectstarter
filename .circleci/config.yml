@@ -418,13 +418,13 @@ jobs:
     steps:
       # Checkout code from git
       - checkout
-      - attach_workspace:
-          at: ~/
       - run:
           name: Install dependencies
           command: |
             # install tar utility
             yum install -y tar gzip
+      - attach_workspace:
+          at: ~/
       - run:
           name: Get old stack workflow id and remove old stacks and files
           command: |
