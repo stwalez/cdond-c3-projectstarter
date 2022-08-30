@@ -217,7 +217,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: backend-build
+          key: [backend-build]
       - run:
           name: Run migrations
           command: |
@@ -324,7 +324,7 @@ jobs:
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
-            ansible-playbook -i inventory.txt deploy-backend.yml
+            ansible-playbook -vv -i inventory.txt deploy-backend.yml
       # Here's where you will add some code to rollback on failure  
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}    
